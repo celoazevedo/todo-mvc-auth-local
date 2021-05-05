@@ -11,13 +11,16 @@
     <h1>Todos</h1>
     <ul>
     <% todos.forEach( el => { %>
+        <!--  every time that a todo is created, we create a new id using the data-id property and assigning the value of the unique that was generated and stored in the db document id stored in the database -->
+        <!-- that is how we can have 2 elements with the same content but also be able to manipulate them individually -->
             <li class='todoItem' data-id='<%=el._id%>'>
+                <!-- now we have the todo a class and wrote a ternaty in that class. depending on how it evaluates we can apply a style accordingly -->
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                 <span class='del'> Delete </span>
             </li>
     <% }) %>    
     </ul>
-
+    <!-- using the logged in user to get the items left from the user -->
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
 
     <form action="/todos/createTodo" method='POST'>
